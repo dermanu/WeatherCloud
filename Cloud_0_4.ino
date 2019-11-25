@@ -18,7 +18,7 @@
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP);
 
-//Wetter Server
+//Wetter Server (CHANGE munich-12836564 to the yahoo area code you life in)
 const char hostname[] = "query.yahooapis.com";
 const String url = "/v1/public/yql?q=select%20item.condition.code%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22munich-12836564%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 const int port = 80;
@@ -50,7 +50,7 @@ void setup() {
   //WiFi anmelden
   WiFi.disconnect();
   delay(1000);
-  WiFi.begin("WG!2", "8799872819339323");
+  WiFi.begin("ENTER WIFI SSID HERE", "ENTER WIFI PASSWORD HERE");
   delay(1000);
   timeClient.begin();
 }
