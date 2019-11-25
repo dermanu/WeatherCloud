@@ -1,20 +1,10 @@
-//Wifi Connection starten
-//Programm das mit Website verbindet und Wetterstream ausliest
-//Wenn laut Blitzen
-//Wetter Cases starten wenn Bewegung
-//Wetter Cases programmieren:
-//  - Bewölkt blau/weiß (wabern)
-//  - Sonnig gelb (wabern)
-//  - Schnee weiß (wabern)
-//  - Gewitter/Regen blau (leicht) & weiß (blitzen)
-
-//Bibliotheken
+//Libraries
 #include <ESP8266WiFi.h>
 #include <SoftwareSerial.h>
 #include <NTPClient.h>
 #include <ESP8266httpUpdate.h>
 
-//Zeit Server
+//Time Server
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP);
 
@@ -25,7 +15,7 @@ const int port = 80;
 unsigned long timeout = 800;
 WiFiClient client;
 
-// Sonstige Variablen
+// Other variables
 char w;
 int sensorPin1 = D5;
 int LEDYellow = D4;
@@ -39,7 +29,7 @@ int fadeAmount = 5;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void setup() {
-  //Pins definieren
+  //Define Pins
   pinMode(LEDYellow, OUTPUT);
   pinMode(LEDBright1, OUTPUT);
   pinMode(LEDBright2, OUTPUT);
@@ -47,7 +37,7 @@ void setup() {
   pinMode(LEDBlue1, OUTPUT);
   pinMode(sensorPin1, INPUT);
 
-  //WiFi anmelden
+  //Connect to WIFI
   WiFi.disconnect();
   delay(1000);
   WiFi.begin("ENTER WIFI SSID HERE", "ENTER WIFI PASSWORD HERE");
@@ -68,15 +58,15 @@ void loop() {
   }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-// Aktuelle Stunden abrufen
+// Check current time (hours)
 int hour() {
-  timeClient.update();       // Zeitzone?
-  int h = timeClient.getHours() + 2; //+1 Winterzeit, +2 Sommerzeit
+  timeClient.update();       
+  int h = timeClient.getHours() + 2; //+1 wintertime, +2 sommertime
   client.stop();
   return h;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-//Wettercode abrufen und kategorisieren
+//Read weather
 int weather() {
   unsigned long timestamp;
   int wcode;
