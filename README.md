@@ -9,4 +9,6 @@ The time is requested from a NTP server (ntpudp) and weather using yahoo's weath
 
 To use the code you have to enter your routers SSID and password and change the yahoo API adress. You also might have to adapt it to your time zone. 
 
+I used an ESP8266 as controller and the LEDs were switched on/off using MOSFETS (RFP30N06LE). More on that matter can be found for example here: https://bildr.org/2012/03/rfp30n06le-arduino/
+
 I'll soon upload pictures of the cloud and might create a electrical circuit file.
